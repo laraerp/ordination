@@ -1,8 +1,10 @@
 <?php namespace Laraerp\Ordination;
 
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\ServiceProvider;
 
 class OrdinationServiceProvider extends ServiceProvider {
+
 
 	/**
 	 * Register the service provider.
@@ -11,11 +13,12 @@ class OrdinationServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-        $this->app->singleton('Laraerp\Ordination\Order', function($app)
-        {
-            $order = new Order();
-            $order->setPath($app['request']->url() . '?'  .http_build_query($app['input']->query(), null, '&'));
 
+        $this->app->bind('order', function()
+        {
+
+            $order = new Order();
+            $order->setPath($this->app['request']->url());
             return $order;
         });
 	}

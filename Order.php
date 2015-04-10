@@ -1,5 +1,7 @@
 <?php namespace Laraerp\Ordination;
 
+use Illuminate\Support\Facades\Input;
+
 class Order {
 
     /**
@@ -16,12 +18,12 @@ class Order {
      * @param  string $alias
      * @return string
      */
-    public function url($column = null, $alias = null)
+    public function url($column = null)
     {
         if (is_null($column))
             throw new \Exception('Column is null');
 
-        return '<a href="">'.(!is_null($alias)?:$column).'</a>';
+        return $this->path . '?' . http_build_query(array_merge(Input::query(), ['by' => 'nome', 'order' => Input::get('order')=='desc'?'asc':'desc']));
     }
 
     /**
