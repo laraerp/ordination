@@ -6,17 +6,31 @@ namespace Laraerp\Ordination;
 trait OrdinationTrait {
 
     public function orderBy($column, $direction = 'asc'){
-        if(strpos($column, '.')) {
-            $a = substr($column, 0, strpos($column, '.'));
-            $b = substr($column, strpos($column, '.') + 1);
 
-            $relation = $this->{$a}();
-            $table = $relation->getRelated()->getTable();
+        $parts = explode('.', $column);
 
-            $column = $table.'.'.$b;
+        $column = array_pop($parts);
 
-            return $this->join($table, $relation->getQualifiedForeignKey(), '=', $relation->getQualifiedOtherKeyName())->orderBy($column, $direction);
+        if(count($parts) > 0){
+
+            $table = null;
+
+            $builder = $this;
+            $model = $this;
+
+            foreach($parts as $part){
+                $relation = $model->{$part}();
+                $model = $relation->getRelated();
+
+                $table = $model->getTable();
+
+                $builder = $builder->leftjoin($table, $relation->getQualifiedForeignKey(), '=', $relation->getQualifiedOtherKeyName());
+            }
+
+            return $builder->orderBy($table . '.' . $column, $direction);
+
         }else
+
             return parent::orderBy($column, $direction);
     }
 
