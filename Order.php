@@ -23,7 +23,7 @@ class Order {
         if (is_null($column))
             throw new \Exception('Column is null');
 
-        return $this->path . '?' . http_build_query(array_merge(Input::query(), ['by' => 'nome', 'order' => Input::get('order')=='desc'?'asc':'desc']));
+        return $this->path . '?' . http_build_query(array_merge(Input::query(), ['by' => $column, 'order' => Input::get('order')=='desc'?'asc':'desc']));
     }
 
     /**
