@@ -25,6 +25,12 @@ Adicione o ServiceProvider no arquivo `config/app.php`
         // other providers ommited
         \Laraerp\Ordination\OrdinationServiceProvider::class,
     ],
+    
+    'aliases' => [
+        // other aliases ommited
+        'Order' => Laraerp\Ordination\Facade::class,
+    ],
+    
 // file END ommited
 ```
 
