@@ -61,7 +61,7 @@ Utilize o helper na sua view para gerar um link de ordenação:
 <thead>
   <tr>
       <th><a href="{{Order::url('pessoa.documento')}}">Documento</a></th>
-      <th><a href="{{Order::url('pessoa.nome')}}">Nome</a></th>
+      <th><a href="{{Order::url('pessoa.nome')}}">Cliente</a></th>
   </tr>
 </thead>
 ```
