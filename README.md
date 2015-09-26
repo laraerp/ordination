@@ -41,7 +41,7 @@ use Laraerp\Ordination\OrdinarionTrait;
 
 class Cliente extends Model{
 
-  use OrdinarionTrait;
+  use OrdinationTrait;
   
   /*
    * Belong To Pessoa
