@@ -1,7 +1,6 @@
 <?php namespace Laraerp\Ordination;
 
-use Illuminate\Support\Facades\Input;
-
+use  Illuminate\Http\Request;
 class Order {
 
     /**
@@ -23,7 +22,7 @@ class Order {
         if (is_null($column))
             throw new \Exception('Column is null');
 
-        return $this->path . '?' . http_build_query(array_merge(Input::query(), ['by' => $column, 'order' => Input::get('order')=='desc'?'asc':'desc']));
+        return $this->path . '?' . http_build_query(array_merge(Request::query(), ['by' => $column, 'order' => Request::get('order')=='desc'?'asc':'desc']));
     }
 
     /**
