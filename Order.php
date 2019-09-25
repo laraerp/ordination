@@ -1,6 +1,6 @@
 <?php namespace Laraerp\Ordination;
 
-use  Illuminate\Http\Request;
+use Request;
 class Order {
 
     /**
