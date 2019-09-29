@@ -1,6 +1,6 @@
 <?php namespace Laraerp\Ordination;
 
-use Illuminate\Support\Facades\Input;
+use Request;
 use Illuminate\Support\ServiceProvider;
 
 class OrdinationServiceProvider extends ServiceProvider {
